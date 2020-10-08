@@ -13,7 +13,7 @@ const Form = () => {
 				<option>Муж</option>
 				<option>Жен</option>
 			</select>
-			<input className="form__input" type="number" name="phone" id="phone" />
+			<input className="form__input" type="tel" name="phone" id="phone" />
 			<label htmlFor="phone">Номер телефона</label>
 		</form>
 	);
