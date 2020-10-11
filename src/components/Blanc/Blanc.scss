@@ -1,0 +1,22 @@
+.wrapper {
+	box-sizing: border-box;
+	width: 50%;
+	padding: 10px 10px;
+}
+
+.blanc {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 5px 0;
+	border: 1px solid red;
+	border-radius: 4px;
+
+	&__item {
+		padding: 5px;
+	}
+
+	&__field {
+		font-weight: 700;
+		margin-right: 4px;
+	}
+}
