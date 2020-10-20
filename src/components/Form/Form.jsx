@@ -1,9 +1,40 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addDataToBlanc } from '../../models/actions';
-import './Form.scss';
+import { addDataToBlanc } from '@models/actions';
+import styles from './Form.module.scss';
+import { validate } from './validate';
+import InputField from '@components/InputField';
 
 const Form = ({ addDataToBlanc }) => {
+	const [errorTexts, setErrorTexts] = useState({});
+
+	const { form, form__elem, form__button } = styles;
+
+	const inputsData = [
+		{ name: 'name', label: 'Имя', error: errorTexts?.name, type: 'text' },
+		{
+			name: 'surname',
+			label: 'Фамилия',
+			error: errorTexts?.surname,
+			type: 'text',
+		},
+		{
+			name: 'birthday',
+			label: 'Дата Рождения',
+			error: errorTexts?.birthday,
+			type: 'date',
+		},
+		{
+			name: 'sex',
+			label: 'Пол',
+			error: errorTexts?.sex,
+			type: 'radio',
+			radioLabels: ['Муж', 'Жен'],
+		},
+		{ name: 'phone', label: 'Телефон', error: errorTexts?.phone, type: 'tel' },
+	];
+
 	const handleValuesValidate = () => {
 		const form = document.forms['myForm'];
 
@@ -15,73 +46,35 @@ const Form = ({ addDataToBlanc }) => {
 			phone: form['phone'].value,
 		};
 
-		const { name, surname, birthday, sex, phone } = newData;
+		const errors = validate(newData);
+		setErrorTexts(errors);
 
-		if (name.match(/\d/g) || surname.match(/\d/g)) {
-			console.log('Используйте только буквы в имени и фамилии');
-		} else if (!name || !surname) {
-			console.log('Введите имя и фамилию');
+		if (Object.keys(errorTexts).length !== 0) {
+			addDataToBlanc(newData);
 		}
-
-		if (!birthday) {
-			console.log('выберете дату');
-		}
-
-		if (!sex) {
-			console.log('выберете пол');
-		}
-
-		if (phone.match(/[^\d-]+/g)) {
-			console.log('Некорректный номер телефона');
-		} else if (!phone) {
-			console.log('Введите номер телефона');
-		}
-
-		console.log('newData', newData);
 	};
 
 	return (
-		<form className="form" name="myForm">
+		<form className={form} name="myForm">
 			<ul>
-				<li className="form__elem">
-					<label>
-						Имя
-						<input className="form__input" type="text" name="name" />
-					</label>
-				</li>
-				<li className="form__elem">
-					<label>
-						Фамилия
-						<input className="form__input" type="text" name="surname" />
-					</label>
-				</li>
-				<li className="form__elem">
-					<label>Дата рождения</label>
-					<input className="form__input" type="date" name="birthday" />
-				</li>
-				<li className="form__elem">
-					<div className="form__checkbox">
-						<span>Пол</span>
-						<label>
-							Муж
-							<input type="radio" name="sex" value="Муж" />
-						</label>
-						<label>
-							Жен
-							<input type="radio" name="sex" value="Жен" />
-						</label>
-					</div>
-				</li>
-				<li className="form__elem">
-					<label>
-						Телефон
-						<input className="form__input" type="tel" name="phone" />
-					</label>
-				</li>
+				{inputsData.map((it) => {
+					const { name, label, error, type } = it;
+					return (
+						<li className={form__elem} key={name}>
+							<InputField
+								name={name}
+								label={label}
+								error={error}
+								type={type}
+								radioLabels={it?.radioLabels}
+							/>
+						</li>
+					);
+				})}
 			</ul>
 
 			<button
-				className="form__button"
+				className={form__button}
 				type="button"
 				onClick={handleValuesValidate}
 			>
@@ -89,6 +82,10 @@ const Form = ({ addDataToBlanc }) => {
 			</button>
 		</form>
 	);
+};
+
+Form.propTypes = {
+	addDataToBlanc: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({});

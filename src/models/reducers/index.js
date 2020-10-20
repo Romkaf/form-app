@@ -12,7 +12,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 	console.log('action.type in reduser:', action.type);
-	console.log('state in reducer', state);
+	// console.log('state in reducer', state);
 	switch (action.type) {
 		case ADD_VALUES_TO_BLANC:
 			const { name, surname, birthday, sex, phone } = action.payload;
