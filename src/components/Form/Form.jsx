@@ -49,7 +49,7 @@ const Form = ({ addDataToBlanc }) => {
 		const errors = validate(newData);
 		setErrorTexts(errors);
 
-		if (Object.keys(errorTexts).length !== 0) {
+		if (Object.keys(errors).length === 0) {
 			addDataToBlanc(newData);
 		}
 	};
