@@ -1,6 +1,6 @@
 import React from 'react';
-import Form from '../Form';
-import Blanc from '../Blanc';
+import Blanc from '@components/Blanc';
+import Form from '@components/Form';
 
 import './App.scss';
 
