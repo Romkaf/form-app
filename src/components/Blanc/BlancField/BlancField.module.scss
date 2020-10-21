@@ -1,0 +1,13 @@
+.field {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	min-height: 40px;
+	padding: 5px 10px;
+	align-items: center;
+
+	&__label {
+		margin-right: 1%;
+		font-weight: 700;
+	}
+}

@@ -1,0 +1,151 @@
+@import '@styles/variables/mixins.scss';
+@import '@styles/variables/colors.scss';
+
+.field {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+
+	@include media-big-mobile {
+		flex-direction: column;
+		align-items: flex-start;
+		font-size: 0.95rem;
+	}
+
+	&__label {
+		width: auto;
+	}
+
+	&__input {
+		min-width: 60%;
+		height: 40px;
+		margin-left: 10px;
+		padding: 2px;
+		border: 1px solid $black;
+		border-radius: 0.3em;
+		font-family: inherit;
+		background-color: transparent;
+
+		@include hoverSupport {
+			box-shadow: 0 0 3px $black;
+		}
+
+		&[type='date'] {
+			font-size: 15px;
+		}
+
+		&_wrong {
+			border-color: $red;
+		}
+
+		@include media-big-mobile {
+			width: 100%;
+			margin: 0;
+		}
+	}
+
+	&__error {
+		position: absolute;
+		bottom: -15px;
+		left: 40%;
+		font-size: 13px;
+		color: $red;
+
+		@include media-big-mobile {
+			left: 0;
+		}
+	}
+
+	&__radioWrapper {
+		display: flex;
+		align-items: baseline;
+		width: 100%;
+		padding: 10px 0;
+
+		@include media-big-mobile {
+			padding-top: 23px;
+			padding-bottom: 12px;
+		}
+
+		@include media-medium-mobile {
+			align-items: center;
+		}
+
+		& div {
+			display: flex;
+			flex-grow: 1;
+			justify-content: space-evenly;
+			max-width: 60%;
+			margin-left: auto;
+
+			@include media-big-mobile {
+				margin-left: 20%;
+			}
+		}
+
+		& label {
+			cursor: pointer;
+
+			@include media-big-mobile {
+				&:not(:last-child) {
+					margin-right: 0.5em;
+				}
+			}
+		}
+
+		& input[type='radio'] {
+			position: relative;
+			height: 20px;
+			width: 20px;
+			margin-left: 1vw;
+			vertical-align: sub;
+			border-radius: 50%;
+			appearance: none;
+			outline: none;
+			cursor: pointer;
+
+			@include media-medium-mobile {
+				margin-top: 5%;
+			}
+
+			@include hoverSupport {
+				box-shadow: 0 0 3px 1px $black;
+			}
+
+			&:focus::before {
+				border-width: 2px;
+			}
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				border: 1px solid $black;
+				transform: translate(-50%, -50%);
+			}
+
+			&:checked::after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 11px;
+				height: 11px;
+				border-radius: 50%;
+				background-color: $black;
+				transform: translate(-50%, -50%);
+				visibility: visible;
+			}
+
+			&.wrong::before {
+				border-color: $red;
+			}
+		}
+	}
+}

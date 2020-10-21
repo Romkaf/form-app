@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { addDataToBlanc } from '@models/actions';
 import styles from './Form.module.scss';
 import { validate } from './validate';
-import InputField from '@components/InputField';
+import InputField from './InputField';
 
 const Form = ({ addDataToBlanc }) => {
 	const [errorTexts, setErrorTexts] = useState({});
 
-	const { form, form__elem, form__button } = styles;
+	const { form, form__elem, form__button, form__buttonWrapper } = styles;
 
 	const inputsData = [
 		{ name: 'name', label: 'Имя', error: errorTexts?.name, type: 'text' },
@@ -21,7 +21,7 @@ const Form = ({ addDataToBlanc }) => {
 		},
 		{
 			name: 'birthday',
-			label: 'Дата Рождения',
+			label: 'Дата рождения',
 			error: errorTexts?.birthday,
 			type: 'date',
 		},
@@ -73,13 +73,18 @@ const Form = ({ addDataToBlanc }) => {
 				})}
 			</ul>
 
-			<button
-				className={form__button}
-				type="button"
-				onClick={handleValuesValidate}
-			>
-				Ввести
-			</button>
+			<div className={form__buttonWrapper}>
+				<button
+					className={form__button}
+					type="button"
+					onClick={handleValuesValidate}
+				>
+					Ввести
+				</button>
+				<button className={form__button} type="reset">
+					Сбросить
+				</button>
+			</div>
 		</form>
 	);
 };
