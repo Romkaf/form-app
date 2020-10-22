@@ -2,11 +2,13 @@
 	"name": "form-app",
 	"version": "0.1.0",
 	"private": true,
+	"homepage": "https://romkaf.github.io/form-app",
 	"dependencies": {
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.5.0",
 		"@testing-library/user-event": "^7.2.1",
 		"classnames": "^2.2.6",
+		"gh-pages": "^3.1.0",
 		"react": "^16.13.1",
 		"react-app-rewire-alias": "^0.1.6",
 		"react-app-rewired": "^2.1.6",
@@ -20,7 +22,9 @@
 		"start": "react-app-rewired start",
 		"build": "react-app-rewired build",
 		"test": "react-app-rewired test",
-		"eject": "react-app-rewired eject"
+		"eject": "react-app-rewired eject",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
