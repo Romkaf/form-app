@@ -6,6 +6,10 @@ import store from './store';
 import './styles/reset.css';
 import './styles/global.scss';
 
+store.subscribe(() => {
+	localStorage.setItem('state', JSON.stringify(store.getState()));
+});
+
 ReactDOM.render(
 	<Provider store={store}>
 		<App />
