@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import BlancField from './BlancField';
 import styles from './Blanc.module.scss';
 
-import './Blanc.module.scss';
-
-const Blanc = (data) => {
-	const { name, surname, birthday, sex, phone } = data;
+const Blanc = ({ name, surname, birthday, sex, phone }) => {
 	const { blanc, blanc__list, blanc__item } = styles;
 
 	const fields = [
@@ -32,11 +29,15 @@ const Blanc = (data) => {
 };
 
 Blanc.propTypes = {
-	data: PropTypes.object,
+	name: PropTypes.string,
+	surname: PropTypes.string,
+	birthday: PropTypes.string,
+	sex: PropTypes.string,
+	phone: PropTypes.string,
 };
 
-const mapStateToProps = (state) => ({
-	...state,
+const mapStateToProps = (data) => ({
+	...data,
 });
 
 export default connect(mapStateToProps)(Blanc);

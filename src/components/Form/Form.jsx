@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import InputField from './InputField';
 import { connect } from 'react-redux';
 import { addDataToBlanc } from '@models/actions';
-import styles from './Form.module.scss';
 import { validate } from './validate';
-import InputField from './InputField';
+import styles from './Form.module.scss';
 
 const Form = ({ addDataToBlanc }) => {
 	const [errorTexts, setErrorTexts] = useState({});
