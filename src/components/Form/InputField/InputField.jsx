@@ -13,6 +13,8 @@ const InputField = ({ name, label, error, type, radioLabels }) => {
 		[styles.field__input_wrong]: error,
 	});
 
+	const phonePlacehoder = '+7xxxxxxxxxx';
+
 	return (
 		<div className={classField}>
 			{type === 'radio' ? (
@@ -39,7 +41,13 @@ const InputField = ({ name, label, error, type, radioLabels }) => {
 					<label className={classLabel} htmlFor={name}>
 						{label}
 					</label>
-					<input className={classInput} id={name} type={type} name={name} />
+					<input
+						className={classInput}
+						id={name}
+						type={type}
+						name={name}
+						placeholder={type === 'tel' ? phonePlacehoder : null}
+					/>
 				</>
 			)}
 			{error && <span className={classError}>{error}</span>}

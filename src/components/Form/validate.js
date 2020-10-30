@@ -1,10 +1,23 @@
 import validatorLib from 'validator';
 
+const validator = {
+	isMinLength: (text) => text.length > 1,
+	isDateBoundaries: (date) => {
+		const bottomDate = '1920 - 01 - 01';
+		const topDate = new Date().toJSON().slice(0, 10);
+		return date > bottomDate && date < topDate;
+	},
+};
+
 export const validate = (fields) => {
 	const errors = {};
 
 	if (!validatorLib.isAlpha(fields.name, 'ru-RU')) {
 		errors.name = 'Используйте только русские буквы в имени';
+	}
+
+	if (!validator.isMinLength(fields.name)) {
+		errors.name = 'Имя должно содержать не менее двух бкув';
 	}
 
 	if (!fields.name) {
@@ -15,12 +28,20 @@ export const validate = (fields) => {
 		errors.surname = 'Используйте только русские буквы в фамилии';
 	}
 
+	if (!validator.isMinLength(fields.surname)) {
+		errors.surname = 'Фамилия должно содержать не менее двух бкув';
+	}
+
 	if (!fields.surname) {
 		errors.surname = 'Введите фамилию';
 	}
 
 	if (!fields.birthday) {
 		errors.birthday = 'Укажите дату';
+	}
+
+	if (!validator.isDateBoundaries(fields.birthday)) {
+		errors.birthday = 'Введите корректное значения даты';
 	}
 
 	if (!fields.sex) {
@@ -32,7 +53,7 @@ export const validate = (fields) => {
 	}
 
 	if (!fields.phone) {
-		errors.phone = 'Введите телефон';
+		errors.phone = 'Введите номер телефона';
 	}
 
 	return errors;
