@@ -8,7 +8,6 @@ import styles from './Form.module.scss';
 
 const Form = ({ addDataToBlanc }) => {
 	const [errorTexts, setErrorTexts] = useState({});
-
 	const { form, form__elem, form__button, form__buttonWrapper } = styles;
 
 	const inputsData = [
@@ -35,9 +34,17 @@ const Form = ({ addDataToBlanc }) => {
 		{ name: 'phone', label: 'Телефон', error: errorTexts?.phone, type: 'tel' },
 	];
 
-	const handleValuesValidate = () => {
-		const form = document.forms['myForm'];
+	const validateData = (data) => {
+		const errors = validate(data);
+		setErrorTexts(errors);
 
+		if (Object.keys(errors).length === 0) {
+			addDataToBlanc(data);
+		}
+	};
+
+	const handleBtnEnterClick = () => {
+		const form = document.forms['myForm'];
 		const newData = {
 			name: form['name'].value,
 			surname: form['surname'].value,
@@ -46,13 +53,18 @@ const Form = ({ addDataToBlanc }) => {
 			phone: form['phone'].value,
 		};
 
-		const errors = validate(newData);
-		setErrorTexts(errors);
-
-		if (Object.keys(errors).length === 0) {
-			addDataToBlanc(newData);
-		}
+		validateData(newData);
 	};
+
+	const handleInputChange = (evt) => {
+		const newData = {
+			[evt.target.name]: evt.target.value,
+		};
+
+		validateData(newData);
+	};
+
+	const handleFieldsReset = () => setErrorTexts({});
 
 	return (
 		<form className={form} name="myForm">
@@ -65,6 +77,7 @@ const Form = ({ addDataToBlanc }) => {
 								name={name}
 								label={label}
 								error={error}
+								onInputChange={type === 'text' ? handleInputChange : null}
 								type={type}
 								radioLabels={it?.radioLabels}
 							/>
@@ -77,11 +90,15 @@ const Form = ({ addDataToBlanc }) => {
 				<button
 					className={form__button}
 					type="button"
-					onClick={handleValuesValidate}
+					onClick={handleBtnEnterClick}
 				>
 					Ввести
 				</button>
-				<button className={form__button} type="reset">
+				<button
+					className={form__button}
+					type="reset"
+					onClick={handleFieldsReset}
+				>
 					Сбросить
 				</button>
 			</div>

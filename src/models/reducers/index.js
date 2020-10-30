@@ -13,13 +13,9 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_VALUES_TO_BLANC:
-			const { name, surname, birthday, sex, phone } = action.payload;
 			return {
-				name,
-				surname,
-				birthday,
-				sex,
-				phone,
+				...state,
+				...action.payload,
 			};
 
 		default:

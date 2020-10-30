@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './InputField.module.scss';
 
-const InputField = ({ name, label, error, type, radioLabels }) => {
+const InputField = ({
+	name,
+	label,
+	error,
+	type,
+	radioLabels,
+	onInputChange,
+}) => {
 	const classField = classNames(styles.field);
 	const classError = classNames(styles.field__error);
 	const classLabel = classNames(styles.field__label);
@@ -13,7 +20,7 @@ const InputField = ({ name, label, error, type, radioLabels }) => {
 		[styles.field__input_wrong]: error,
 	});
 
-	const phonePlacehoder = '+7xxxxxxxxxx';
+	const phonePlaceholder = '+7xxxxxxxxxx';
 
 	return (
 		<div className={classField}>
@@ -46,7 +53,8 @@ const InputField = ({ name, label, error, type, radioLabels }) => {
 						id={name}
 						type={type}
 						name={name}
-						placeholder={type === 'tel' ? phonePlacehoder : null}
+						onChange={onInputChange}
+						placeholder={type === 'tel' ? phonePlaceholder : null}
 					/>
 				</>
 			)}
