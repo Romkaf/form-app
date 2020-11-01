@@ -1,3 +1,5 @@
+@import '@styles/variables/colors.scss';
+
 @font-face {
 	font-weight: 400;
 	font-family: 'Roboto';
@@ -28,4 +30,8 @@
 
 :root {
 	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	background-color: $dark-white;
 }

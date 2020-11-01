@@ -4,9 +4,11 @@
 .field {
 	position: relative;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	width: 100%;
+	width: 80%;
+	min-height: 64px;
+	margin: auto;
 
 	@include media-big-mobile {
 		flex-direction: column;
@@ -15,16 +17,24 @@
 	}
 
 	&__label {
-		width: auto;
+		position: absolute;
+		left: 4%;
+		max-width: 100%;
+		overflow: hidden;
+		transition: transform 0.25s ease, font-size 0.25s ease;
+
+		&_small {
+			transform: translateY(-15px);
+			font-size: 13px;
+		}
 	}
 
 	&__input {
-		min-width: 60%;
-		height: 40px;
-		margin-left: 10px;
-		padding: 2px;
+		width: 100%;
+		min-height: 55px;
+		padding: 25px 10px 15px 17px;
 		border: 1px solid $black;
-		border-radius: 0.3em;
+		border-radius: 6px;
 		font-family: inherit;
 		background-color: transparent;
 
@@ -32,28 +42,55 @@
 			box-shadow: 0 0 3px $black;
 		}
 
+		&:focus {
+			box-shadow: 0 0 3px $black;
+		}
+
+		&:focus + label {
+			transform: translateY(-15px);
+			font-size: 13px;
+		}
+
 		&[type='date'] {
 			font-size: 15px;
+			color: transparent;
+		}
+
+		&[type='date']:focus,
+		&[type='date']:valid {
+			color: $black;
 		}
 
 		&_wrong {
 			border-color: $red;
 		}
 
+		&[type='tel']::placeholder {
+			color: transparent;
+		}
+
+		&[type='tel']:focus::placeholder {
+			color: $grey;
+		}
+
 		@include media-big-mobile {
 			width: 100%;
+			min-height: 54px;
+			padding-top: 20px;
+			padding-bottom: 10px;
 			margin: 0;
 		}
 	}
 
 	&__error {
 		position: absolute;
-		bottom: -15px;
-		left: 40%;
+		top: 63px;
+		left: 0%;
 		font-size: 13px;
 		color: $red;
 
 		@include media-big-mobile {
+			top: 59px;
 			left: 0;
 		}
 	}
@@ -65,12 +102,16 @@
 		padding: 10px 0;
 
 		@include media-big-mobile {
-			padding-top: 23px;
-			padding-bottom: 12px;
+			padding-top: 3px;
 		}
 
-		@include media-medium-mobile {
-			align-items: center;
+		& span {
+			width: 17px;
+			margin-left: 17px;
+
+			@include media-big-mobile {
+				margin-left: 13px;
+			}
 		}
 
 		& div {
@@ -79,10 +120,6 @@
 			justify-content: space-evenly;
 			max-width: 60%;
 			margin-left: auto;
-
-			@include media-big-mobile {
-				margin-left: 20%;
-			}
 		}
 
 		& label {
@@ -105,10 +142,6 @@
 			appearance: none;
 			outline: none;
 			cursor: pointer;
-
-			@include media-medium-mobile {
-				margin-top: 5%;
-			}
 
 			@include hoverSupport {
 				box-shadow: 0 0 3px 1px $black;

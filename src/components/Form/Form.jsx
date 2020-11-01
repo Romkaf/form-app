@@ -56,9 +56,9 @@ const Form = ({ addDataToBlanc }) => {
 		validateData(newData);
 	};
 
-	const handleInputChange = (evt) => {
+	const handleInputChange = (name, value) => {
 		const newData = {
-			[evt.target.name]: evt.target.value,
+			[name]: value,
 		};
 
 		validateData(newData);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './InputField.module.scss';
@@ -11,14 +11,27 @@ const InputField = ({
 	radioLabels,
 	onInputChange,
 }) => {
+	const [value, setValue] = useState('');
+
 	const classField = classNames(styles.field);
 	const classError = classNames(styles.field__error);
-	const classLabel = classNames(styles.field__label);
+	const classLabel = classNames(styles.field__label, {
+		[styles.field__label_small]: value,
+	});
 	const classRadioWrapper = classNames(styles.field__radioWrapper);
 	const classRadioError = classNames({ [styles.wrong]: error });
 	const classInput = classNames(styles.field__input, {
 		[styles.field__input_wrong]: error,
 	});
+	console.log('value', value);
+	const handleInputChange = (evt) => {
+		setValue(evt.target.value);
+		const name = evt.target.name;
+		const value = evt.target.value;
+		if (name === 'name' || name === 'surname') {
+			onInputChange(name, value);
+		}
+	};
 
 	const phonePlaceholder = '+7xxxxxxxxxx';
 
@@ -45,17 +58,18 @@ const InputField = ({
 				</div>
 			) : (
 				<>
-					<label className={classLabel} htmlFor={name}>
-						{label}
-					</label>
 					<input
 						className={classInput}
 						id={name}
 						type={type}
 						name={name}
-						onChange={onInputChange}
+						onChange={handleInputChange}
 						placeholder={type === 'tel' ? phonePlaceholder : null}
+						required
 					/>
+					<label className={classLabel} htmlFor={name}>
+						{label}
+					</label>
 				</>
 			)}
 			{error && <span className={classError}>{error}</span>}

@@ -3,12 +3,20 @@
 @import '@styles/variables/colors.scss';
 
 .form {
-	width: 50%;
+	width: 48%;
+	padding: 25px 0 35px;
+	border-radius: 8px;
+	background-color: $white;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+	@include media-big-mobile {
+		padding: 10px 0 20px;
+	}
 
 	&__elem {
 		width: 100%;
-		padding: 10px;
-		padding-left: 20px;
+		padding: 10px 0;
+		margin-bottom: 5px;
 	}
 
 	&__buttonWrapper {
@@ -26,15 +34,6 @@
 		margin-right: 20px;
 		border: 1px solid $black;
 		border-radius: 5px;
-
-		@include media-medium-mobile {
-			padding: 3px 6px;
-			font-size: 0.95em;
-
-			&:first-child {
-				margin-right: 10px;
-			}
-		}
 
 		@include hoverSupport {
 			box-shadow: 0 0 3px $black;
