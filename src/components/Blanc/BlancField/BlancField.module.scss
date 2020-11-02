@@ -1,13 +1,19 @@
+@import '@styles/variables/colors.scss';
+
 .field {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	min-height: 40px;
-	padding: 5px 10px;
-	align-items: center;
+	align-items: flex-end;
+	padding: 8px 0;
+	padding-right: 20px;
 
 	&__label {
-		margin-right: 1%;
+		margin-right: 5px;
 		font-weight: 700;
+		white-space: nowrap;
+	}
+
+	&__value {
+		width: 100%;
+		border-bottom: 1px solid $black;
 	}
 }

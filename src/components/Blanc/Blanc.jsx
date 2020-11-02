@@ -5,25 +5,37 @@ import BlancField from './BlancField';
 import styles from './Blanc.module.scss';
 
 const Blanc = ({ name, surname, birthday, sex, phone }) => {
-	const { blanc, blanc__list, blanc__item } = styles;
+	const {
+		blanc,
+		blanc__list,
+		blanc__item,
+		blanc__head,
+		blanc__heading,
+	} = styles;
 
 	const fields = [
 		{ label: 'Имя', value: name },
 		{ label: 'Фамилия', value: surname },
-		{ label: 'Год рождения', value: birthday },
+		{ label: 'Дата рождения', value: birthday },
 		{ label: 'Пол', value: sex },
 		{ label: 'Телефон', value: phone },
 	];
 
 	return (
 		<div className={blanc}>
-			<ul className={blanc__list}>
+			<div className={blanc__head}>
+				<b> Форма № Т-2</b>
+				<span>Утверждена постановлением Госкомитета РФ</span>
+				<span>от 5 января 2005 г.</span>
+			</div>
+			<h2 className={blanc__heading}>Карточка работника</h2>
+			<ol className={blanc__list}>
 				{fields.map(({ label, value }) => (
 					<li className={blanc__item} key={label}>
 						<BlancField label={label} value={value} />
 					</li>
 				))}
-			</ul>
+			</ol>
 		</div>
 	);
 };
