@@ -23,7 +23,7 @@ const InputField = ({
 	const classInput = classNames(styles.field__input, {
 		[styles.field__input_wrong]: error,
 	});
-	console.log('value', value);
+
 	const handleInputChange = (evt) => {
 		setValue(evt.target.value);
 		const name = evt.target.name;

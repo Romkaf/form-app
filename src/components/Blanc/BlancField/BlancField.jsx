@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './BlancField.module.scss';
 
@@ -18,4 +18,4 @@ Blancfield.propTypes = {
 	value: PropTypes.string,
 };
 
-export default Blancfield;
+export default memo(Blancfield);
