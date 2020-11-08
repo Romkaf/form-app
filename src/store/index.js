@@ -1,10 +1,16 @@
 import { createStore } from 'redux';
-import { reducer } from '../models/reducers';
+import reducer from '../models/reducers';
 
-const persistedState = localStorage.getItem('state')
+const initialState = localStorage.getItem('state')
 	? JSON.parse(localStorage.getItem('state'))
-	: {};
+	: {
+			name: '',
+			surname: '',
+			birthday: '',
+			sex: '',
+			phone: '',
+	  };
 
-const store = createStore(reducer, persistedState);
+const store = createStore(reducer, initialState);
 
 export default store;

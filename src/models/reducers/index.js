@@ -1,16 +1,6 @@
-import actionTypes from '../actions/actionTypes';
+import { ADD_VALUES_TO_BLANC } from '../actions/actionTypes';
 
-const { ADD_VALUES_TO_BLANC } = actionTypes;
-
-const initialState = {
-	name: '',
-	surname: '',
-	birthday: '',
-	sex: '',
-	phone: '',
-};
-
-const reducer = (state = initialState, action) => {
+export default (state, action) => {
 	switch (action.type) {
 		case ADD_VALUES_TO_BLANC:
 			return {
@@ -22,5 +12,3 @@ const reducer = (state = initialState, action) => {
 			return state;
 	}
 };
-
-export { reducer };

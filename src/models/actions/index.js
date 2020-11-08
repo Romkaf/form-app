@@ -1,6 +1,4 @@
-import actionTypes from './actionTypes';
-
-const { ADD_VALUES_TO_BLANC } = actionTypes;
+import { ADD_VALUES_TO_BLANC } from './actionTypes';
 
 const addDataToBlanc = (data) => {
 	return {

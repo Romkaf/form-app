@@ -110,6 +110,4 @@ Form.propTypes = {
 	addDataToBlanc: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({});
-
-export default connect(mapStateToProps, { addDataToBlanc })(Form);
+export default connect(null, { addDataToBlanc })(Form);
